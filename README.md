@@ -1,8 +1,14 @@
 # cinema-manager
 
+![diagram](diagram.svg)
+
 ## 📋 Description
 
 The Cinema Management System is an application designed to help manage a cinema. It allows administrators to define cinema halls, add movies, and create schedules (repertoires) based on this data. Each hall can have different seating configurations. Movies include basic information such as title, duration, and genre. The schedule feature lets users assign movies to specific halls and time slots, making it easy to plan daily or weekly screenings. The system improves organization and helps automate cinema operations.
+
+Inheritance – each class inherits from the base entity class to have a unique ID.
+Encapsulation – is used in classes that work with the DbContext.
+Abstraction and Polymorphism – the Employee and Manager classes inherit from the Person class and implement the getRole method according to their specific needs.
 
 ## ✅ Implemented Features
 
