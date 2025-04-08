@@ -1,5 +1,18 @@
 # cinema-manager
 
+## Getting started
+
+To run entire solution:
+
+1. Go to api folder and run `docker compose up` - it will create container with postgress db, db will be empty
+2. in new console window go to api folder and run `dotnet restore` to install dontet dependencies
+3. then in the same ditectory as in step number two type `dotnet ef database update` it will run migration and create necessary tables
+4. in the same directory run `dotnet run`
+5. go to the frontend directory and run `npm install`
+6. still in the frontend directory run `npm run dev`
+
+Enjoy your time with this awesome app!!!
+
 ![diagram](diagram.svg)
 
 ## 📋 Description

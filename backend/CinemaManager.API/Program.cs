@@ -20,8 +20,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+string connectionString = "Host=localhost;Port=5432;Database=cinema_manager_db;Username=admin;Password=pass";
 builder.Services.AddDbContext<CinemaDbContext>(options =>
-    options.UseInMemoryDatabase("CinemaManagerDB"));
+    options.UseNpgsql(connectionString));
+
 builder.Services.AddScoped<MovieService>();
 builder.Services.AddScoped<CinemaHallService>();
 builder.Services.AddScoped<ScheduleService>();
