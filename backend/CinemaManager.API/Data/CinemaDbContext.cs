@@ -8,7 +8,10 @@ namespace CinemaManager.API.Data
         public DbSet<Movie> Movies { get; set; }
         public DbSet<CinemaHall> CinemaHalls { get; set; }
         public DbSet<ScheduleItem> ScheduleItems { get; set; }
+        
+        public DbSet<Employee> Employees { get; set; }
 
+        public DbSet<Account> Accounts { get; set; }
 
         public CinemaDbContext(DbContextOptions<CinemaDbContext> options) : base(options)
         {

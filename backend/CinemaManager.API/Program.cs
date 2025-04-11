@@ -1,4 +1,5 @@
 using CinemaManager.API.Data;
+using CinemaManager.API.Models;
 using CinemaManager.API.Services;
 using Microsoft.EntityFrameworkCore;
 
