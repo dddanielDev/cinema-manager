@@ -1,11 +1,15 @@
+using CinemaManager.API.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CinemaManager.API.Services;
 using CinemaManager.API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CinemaManager.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
+    [RequireFeature(Features.Schedules)]
     public class ScheduleController : ControllerBase
     {
         private readonly ScheduleService _scheduleService;
