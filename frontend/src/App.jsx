@@ -7,11 +7,21 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 import LoginPage from "./pages/LoginPage";
+import { useGetAvailableFeaturesQuery } from "./features/availableFeatures/availableFeaturesApi";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, featureName }) => {
   const token = useSelector((state) => state.login?.bearer);
-  console.log("Token from Redux:", token);
-  if (!token) {
+
+  const { data: availableFeatures } = useGetAvailableFeaturesQuery(undefined, {
+    skip: !token,
+    refetchOnMountOrArgChange: false,
+  });
+
+  const isMissingFeature =
+    Boolean(availableFeatures?.length) &&
+    !availableFeatures.includes(featureName);
+
+  if (!token || isMissingFeature) {
     return <Navigate to="/login" replace />;
   }
   return children;
@@ -28,7 +38,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute featureName="Movies">
               <Layout>
                 <MoviesPage />
               </Layout>
@@ -38,7 +48,7 @@ function App() {
         <Route
           path="/cinemahalls"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute featureName="CinemaHalls">
               <Layout>
                 <CinemaHallsPage />
               </Layout>
@@ -48,7 +58,7 @@ function App() {
         <Route
           path="/schedule"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute featureName="Schedules">
               <Layout>
                 <SchedulePage />
               </Layout>
