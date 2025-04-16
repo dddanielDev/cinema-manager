@@ -1,12 +1,10 @@
 namespace CinemaManager.API.Models
 {
-    public class Employee : Person
+    public class Employee : BaseEntity
     {
-        public Employee(string firstName, string lastName) : base(firstName, lastName) {}
-
-        public override string GetRole()
-        {
-            return "Employee";
-        }
+        public string name { get; set; }
+        public string role { get; set; }
+        
+        public Account Account { get; set; }
     }
 }

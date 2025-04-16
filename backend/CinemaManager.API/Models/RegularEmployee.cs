@@ -1,10 +1,10 @@
 namespace CinemaManager.API.Models
 {
-    public class Manager : EmployeeFeatures
+    public class RegularEmployee : EmployeeFeatures
     {
         public override string[] GetEnabledFeatures()
         {
-            return [Features.Movies, Features.Schedules, Features.CinemaHalls];
+            return [Features.Movies, Features.CinemaHalls];
         }
     }
 }

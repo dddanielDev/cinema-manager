@@ -3,6 +3,7 @@ using System;
 using CinemaManager.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CinemaManager.API.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    partial class CinemaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250411184716_auth_tables")]
+    partial class auth_tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,20 +43,6 @@ namespace CinemaManager.API.Migrations
                         .IsUnique();
 
                     b.ToTable("Accounts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
-                            EmployeeId = new Guid("11111111-1111-1111-1111-111111111111"),
-                            Pin = 1234
-                        },
-                        new
-                        {
-                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
-                            EmployeeId = new Guid("33333333-3333-3333-3333-333333333333"),
-                            Pin = 4321
-                        });
                 });
 
             modelBuilder.Entity("CinemaManager.API.Models.CinemaHall", b =>
@@ -91,20 +80,6 @@ namespace CinemaManager.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
-                            name = "menago",
-                            role = "manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
-                            name = "regular",
-                            role = "regular_employee"
-                        });
                 });
 
             modelBuilder.Entity("CinemaManager.API.Models.Movie", b =>
