@@ -1,11 +1,15 @@
+using CinemaManager.API.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CinemaManager.API.Services;
 using CinemaManager.API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CinemaManager.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
+    [RequireFeature(Features.Schedules)]
     public class ScheduleController : ControllerBase
     {
         private readonly ScheduleService _scheduleService;
@@ -17,11 +21,10 @@ namespace CinemaManager.API.Controllers
 
         [HttpGet]
         public IActionResult GetSchedule()
-{
-    var schedule = _scheduleService.GetSchedule();
-    return Ok(schedule);
-}
-
+        {
+            var schedule = _scheduleService.GetSchedule();
+            return Ok(schedule);
+        }
 
         [HttpPost]
         public IActionResult AddSchedule([FromBody] ScheduleDto dto)
@@ -41,9 +44,9 @@ namespace CinemaManager.API.Controllers
     }
 
     public class ScheduleDto
-{
-    public Guid MovieId { get; set; }
-    public Guid CinemaHallId { get; set; } 
-    public DateTime StartTime { get; set; }
-}
+    {
+        public Guid MovieId { get; set; }
+        public Guid CinemaHallId { get; set; } 
+        public DateTime StartTime { get; set; }
+    }
 }

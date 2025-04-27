@@ -1,18 +1,19 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithAuth } from "../base/baseQuery";
 
 export const scheduleApi = createApi({
-  reducerPath: 'scheduleApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5136/api/' }),
-  endpoints: builder => ({
+  reducerPath: "scheduleApi",
+  baseQuery: baseQueryWithAuth,
+  endpoints: (builder) => ({
     getSchedule: builder.query({
-      query: () => 'schedule',
+      query: () => "schedule",
     }),
     addSchedule: builder.mutation({
-      query: item => ({
-        url: 'schedule',
-        method: 'POST',
+      query: (item) => ({
+        url: "schedule",
+        method: "POST",
         body: item,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       }),
     }),
   }),
