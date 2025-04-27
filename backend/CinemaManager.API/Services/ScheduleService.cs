@@ -24,6 +24,9 @@ namespace CinemaManager.API.Services
 
         public void AddScheduleItem(Guid movieId, Guid cinemaHallId, DateTime startTime)
         {
+            if (startTime.Kind != DateTimeKind.Utc)
+                startTime = DateTime.SpecifyKind(startTime, DateTimeKind.Utc);
+    
             var movie = _context.Movies.FirstOrDefault(m => m.Id == movieId);
             var hall = _context.CinemaHalls.FirstOrDefault(h => h.Id == cinemaHallId);
 
