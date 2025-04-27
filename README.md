@@ -19,30 +19,36 @@ Enjoy your time with this awesome app!!!
 
 The Cinema Management System is an application designed to help manage a cinema. It allows administrators to define cinema halls, add movies, and create schedules (repertoires) based on this data. Each hall can have different seating configurations. Movies include basic information such as title, duration, and genre. The schedule feature lets users assign movies to specific halls and time slots, making it easy to plan daily or weekly screenings. The system improves organization and helps automate cinema operations.
 
-Inheritance – each class inherits from the base entity class to have a unique ID.
-Encapsulation – is used in classes that work with the DbContext.
-Abstraction and Polymorphism – the Employee and Manager classes inherit from the Person class and implement the getRole method according to their specific needs.
+### Additional System Features
+The system also includes:
+
+Employee Management: Different types of employees (regular employees and managers) with specific roles and permissions.
+Authentication System: Secure PIN-based login system for employees with JWT token issuance for authorized access.
+Account Management: Creation and management of employee accounts with associated credentials.
+Role-Based Access Control: Different features are accessible based on employee roles.
+Architecture Design Principles
+Inheritance: Each class inherits from the base entity class to have a unique ID.
+Encapsulation: Used in service classes that work with the DbContext to hide implementation details and provide clean interfaces.
+Abstraction and Polymorphism: The Employee and Manager classes inherit from the Person class and implement the getRole method according to their specific needs.
+Service Layer: Dedicated services handle specific domain operations (CinemaHallService, MovieService, ScheduleService, EmployeeFeaturesService, AccountsService, JwtService).
+Repository Pattern: Services encapsulate data access and manipulation operations.
+The system provides a comprehensive solution for cinema operations management with proper separation of concerns and well-defined responsibilities for each component.
 
 ## ✅ Implemented Features
 
+- System-wide description and documentation
 - Ability to add cinema rooms
 - Ability to add movies
 - Schedule creation based on rooms and available movies
 - Responsive UI (RWD)
-
-## 🚧 To Be Done
-
-- System-wide description and documentation
-- Remaining functionalities (to be specified)
-- UML diagram (text + image)
-- Verification of full use of object-oriented programming concepts
-- PIN-based login (hardcoded in MVP version)
+- PIN-based login
 
 ## 🧩 Technologies
 
 - C# .net
 - entity framework
-- In cache memory db
+- postgressql
+- jwt
 - js
 - react
 - tailwind
@@ -51,4 +57,3 @@ Abstraction and Polymorphism – the Employee and Manager classes inherit from t
 ## 📌 Notes
 
 - PIN login will be simplified for MVP and hardcoded in the codebase
-- Further refinements will follow after core functionality is in place
