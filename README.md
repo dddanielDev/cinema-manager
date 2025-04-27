@@ -15,6 +15,26 @@ Enjoy your time with this awesome app!!!
 
 ![diagram](diagram.svg)
 
+## Oject-Oriented Programming Pillars in the Cinema Management System
+Based on the code I can see, here are examples of the four main OOP pillars:
+
+Inheritance
+Account class inherits from BaseEntity, gaining its properties (likely an ID)
+From previous information, Employee and Manager classes inherit from a common Person base class
+Encapsulation
+Account class encapsulates PIN and employee relationship data with properties
+Service classes (like AccountsService, MovieService) encapsulate database operations and business logic behind clean interfaces
+Data access is controlled through getters/setters rather than direct field access
+Abstraction
+Service layer provides abstraction by hiding implementation details of operations
+The relationship between Account and Employee abstracts authentication from user identity
+EmployeeFeaturesService likely abstracts role-based capabilities
+Polymorphism
+Different employee types (Manager, Regular Employee) implement the getRole() method according to their specific needs
+Authentication and authorization mechanisms likely use polymorphic behavior to handle different account types
+These principles work together to create a modular, maintainable system with clear separation of concerns and proper domain modeling.
+
+
 ## 📋 Description
 
 The Cinema Management System is an application designed to help manage a cinema. It allows administrators to define cinema halls, add movies, and create schedules (repertoires) based on this data. Each hall can have different seating configurations. Movies include basic information such as title, duration, and genre. The schedule feature lets users assign movies to specific halls and time slots, making it easy to plan daily or weekly screenings. The system improves organization and helps automate cinema operations.
