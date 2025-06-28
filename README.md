@@ -1,5 +1,14 @@
 # cinema-manager
 
+## How application looks like
+### Login page
+![image](https://github.com/user-attachments/assets/0d1fdc2a-1ede-4bd0-a9b2-94365bd04879)
+### Regular employee view
+![image](https://github.com/user-attachments/assets/89f4b84c-9d2b-4282-9a76-91944f7b2ca2)
+### Manager view
+![image](https://github.com/user-attachments/assets/a7b85a0a-2bb8-4ee5-8c73-7b924a74b448)
+
+
 ## Getting started
 
 To run entire solution:
