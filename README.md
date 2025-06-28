@@ -33,20 +33,64 @@ The Cinema Management System is an application designed to help manage a cinema.
 #### Inheritance
 - Account class inherits from BaseEntity, gaining its properties (likely an ID)
 - Employee and Manager classes inherit from a common Person base class
+  ```
+  public class Movie : BaseEntity
+    {
+        public string Title { get; private set; }
+        public string Description { get; private set; }
+  ```
 
 #### Encapsulation
 - Account class encapsulates PIN and employee relationship data with properties
 - Service classes (like AccountsService, MovieService) encapsulate database operations and business logic
 - Data access is controlled through getters/setters rather than direct field access
+  ```
+    public class MovieService
+        {
+            private readonly CinemaDbContext _context;
+
+        public MovieService(CinemaDbContext context)
+        {
+            _context = context;
+        }
+
+        public IEnumerable<Movie> GetAllMovies()
+        {
+            return _context.Movies.ToList();
+        }
+  ```
 
 #### Abstraction
 - Service layer provides abstraction by hiding implementation details of operations
 - The relationship between Account and Employee abstracts authentication from user identity
 - EmployeeFeaturesService abstracts role-based capabilities
+  ```
+    public static class EmployeeFeaturesService
+    {
+        public static EmployeeFeatures GetEmployeeFeatures(string role)
+        {
+            if (role == "manager")
+            {
+                return new Manager();
+            }
+    
+            return new RegularEmployee();
+        }
+    }
+  ```
 
 #### Polymorphism
-- Different employee types (Manager, Regular Employee) implement the getRole() method according to their specific needs
+- Different employee types (Manager, Regular Employee) implement the getFeaturesEnabled method according to their specific needs
 - Authentication and authorization mechanisms use polymorphic behavior to handle different account types
+  ```
+      public class RegularEmployee : EmployeeFeatures
+    {
+        public override string[] GetEnabledFeatures()
+        {
+            return [Features.Movies, Features.CinemaHalls];
+        }
+    }
+  ```
 
 ### Description
 
