@@ -85,3 +85,7 @@ The Cinema Management System allows administrators to define cinema halls, add m
 ## Notes
 
 - PIN login will be simplified for MVP and hardcoded in the codebase
+
+## Problems description
+
+- At first we used in cache memory db, but due to problems with data loosing we decide to switch to postgressql. Switch was very easy, we change provider in config file and add docker-compose for db. We choose docker composer because it is easier to setup local environment.
