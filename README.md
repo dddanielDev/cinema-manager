@@ -1,5 +1,14 @@
 # cinema-manager
 
+## How application looks like
+### Login page
+![image](https://github.com/user-attachments/assets/0d1fdc2a-1ede-4bd0-a9b2-94365bd04879)
+### Regular employee view
+![image](https://github.com/user-attachments/assets/89f4b84c-9d2b-4282-9a76-91944f7b2ca2)
+### Manager view
+![image](https://github.com/user-attachments/assets/a7b85a0a-2bb8-4ee5-8c73-7b924a74b448)
+
+
 ## Getting started
 
 To run entire solution:
@@ -24,20 +33,64 @@ The Cinema Management System is an application designed to help manage a cinema.
 #### Inheritance
 - Account class inherits from BaseEntity, gaining its properties (likely an ID)
 - Employee and Manager classes inherit from a common Person base class
+  ```
+  public class Movie : BaseEntity
+    {
+        public string Title { get; private set; }
+        public string Description { get; private set; }
+  ```
 
 #### Encapsulation
 - Account class encapsulates PIN and employee relationship data with properties
 - Service classes (like AccountsService, MovieService) encapsulate database operations and business logic
 - Data access is controlled through getters/setters rather than direct field access
+  ```
+    public class MovieService
+        {
+            private readonly CinemaDbContext _context;
+
+        public MovieService(CinemaDbContext context)
+        {
+            _context = context;
+        }
+
+        public IEnumerable<Movie> GetAllMovies()
+        {
+            return _context.Movies.ToList();
+        }
+  ```
 
 #### Abstraction
 - Service layer provides abstraction by hiding implementation details of operations
 - The relationship between Account and Employee abstracts authentication from user identity
 - EmployeeFeaturesService abstracts role-based capabilities
+  ```
+    public static class EmployeeFeaturesService
+    {
+        public static EmployeeFeatures GetEmployeeFeatures(string role)
+        {
+            if (role == "manager")
+            {
+                return new Manager();
+            }
+    
+            return new RegularEmployee();
+        }
+    }
+  ```
 
 #### Polymorphism
-- Different employee types (Manager, Regular Employee) implement the getRole() method according to their specific needs
+- Different employee types (Manager, Regular Employee) implement the getFeaturesEnabled method according to their specific needs
 - Authentication and authorization mechanisms use polymorphic behavior to handle different account types
+  ```
+      public class RegularEmployee : EmployeeFeatures
+    {
+        public override string[] GetEnabledFeatures()
+        {
+            return [Features.Movies, Features.CinemaHalls];
+        }
+    }
+  ```
 
 ### Description
 
@@ -76,3 +129,7 @@ The Cinema Management System allows administrators to define cinema halls, add m
 ## Notes
 
 - PIN login will be simplified for MVP and hardcoded in the codebase
+
+## Problems description
+
+- At first we used in cache memory db, but due to problems with data loosing we decide to switch to postgressql. Switch was very easy, we change provider in config file and add docker-compose for db. We choose docker composer because it is easier to setup local environment.
