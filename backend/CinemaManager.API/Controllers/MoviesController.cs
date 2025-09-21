@@ -32,13 +32,24 @@ namespace CinemaManager.API.Controllers
             var movie = _movieService.AddMovie(dto.Title, dto.Description, dto.DurationMinutes);
             return Ok(movie);
         }
+
+        [HttpPut("{id}")]
+        public ActionResult<Movie> UpdateMovie(Guid id, [FromBody] MovieDto dto)
+        {
+            var movie = _movieService.UpdateMovie(id, dto.Title, dto.Description, dto.DurationMinutes);
+            if (movie == null)
+            {
+                return NotFound($"Movie with ID {id} not found.");
+            }
+            return Ok(movie);
+        }
     }
 
     public class MovieDto
-{
-    public string? Title { get; set; }
-    public string? Description { get; set; }
-    public int DurationMinutes { get; set; }
-}
+    {
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public int DurationMinutes { get; set; }
+    }
 
 }

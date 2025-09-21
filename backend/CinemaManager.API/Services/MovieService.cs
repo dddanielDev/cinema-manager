@@ -24,5 +24,18 @@ namespace CinemaManager.API.Services
             _context.SaveChanges();
             return movie;
         }
+
+        public Movie? UpdateMovie(Guid id, string title, string description, int durationMinutes)
+        {
+            var movie = _context.Movies.FirstOrDefault(m => m.Id == id);
+            if (movie == null)
+            {
+                return null;
+            }
+
+            movie.Update(title, description, durationMinutes);
+            _context.SaveChanges();
+            return movie;
+        }
     }
 }

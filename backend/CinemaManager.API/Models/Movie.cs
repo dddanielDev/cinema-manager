@@ -14,5 +14,12 @@ namespace CinemaManager.API.Models
             Description = description;
             DurationMinutes = durationMinutes;
         }
+
+        public void Update(string title, string description, int durationMinutes)
+        {
+            Title = title;
+            Description = description;
+            DurationMinutes = durationMinutes;
+        }
     }
 }
